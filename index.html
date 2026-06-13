@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صحیح بخاری - سرچ انجن</title>
+    <style>
+        body { font-family: 'Noto Nastaliq Urdu', Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+      .splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0d4b2a, #1a5c2e); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; text-align: center; padding: 20px; box-sizing: border-box; }
+      .splash h1 { font-size: 2.2em; margin-bottom: 15px; }
+      .splash .bismillah { font-size: 1.8em; margin-bottom: 20px; color: #d4af37; }
+      .splash .durood { font-size: 1.1em; margin-bottom: 25px; line-height: 1.8; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; }
+      .splash button { background: #d4af37; color: #0d4b2a; border: none; padding: 15px 40px; font-size: 1.3em; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+      .main { display: none; padding: 20px; max-width: 900px; margin: auto; }
+      .header { text-align: center; background: #0d4b2a; color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; position: relative; }
+      .header .bismillah-top { font-size: 1.5em; color: #d4af37; margin-bottom: 10px; }
+      .header .ilham { position: absolute; left: 15px; top: 15px; font-size: 0.8em; color: #d4af37; opacity: 0.8; }
+      .header .credit { font-size: 0.9em; color: #d4af37; margin-top: 10px; }
+      .search-box { width: 100%; padding: 15px; font-size: 1.1em; border: 2px solid #0d4b2a; border-radius: 8px; margin-bottom: 20px; box-sizing: border-box; }
+      .search-btn { background: #0d4b2a; color: white; border: none; padding: 12px 25px; font-size: 1.1em; border-radius: 8px; cursor: pointer; margin-bottom: 20px; }
+      .hadees { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; border-right: 5px solid #d4af37; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; }
+      .hadees-title { font-weight: bold; color: #0d4b2a; font-size: 1.3em; margin-bottom: 10px; }
+      .arabic { font-size: 1.4em; color: #333; margin: 10px 0; line-height: 2; }
+      .translation { margin: 10px 0; }
+      .hadees-info { color: #666; font-size: 0.9em; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px; }
+      .speak-btn { background: #d4af37; color: #0d4b2a; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em; margin-top: 10px; }
+      .hidden { display: none; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="splash" id="splashScreen">
+        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <h1>صحیح بخاری سرچ انجن</h1>
+        <div class="durood">
+            برائے مہربانی داخل ہونے سے پہلے<br>
+            10 مرتبہ درود شریف پڑھ لیں<br>
+            اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ
+        </div>
+        <button onclick="enterSite()">داخل ہوں</button>
+    </div>
+    <div class="main" id="mainContent">
+        <div class="header">
+            <div class="ilham">الہام</div>
+            <div class="bismillah-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <h1>صحیح بخاری سرچ انجن</h1>
+            <p>عنوان یا لفظ سے حدیث تلاش کریں</p>
+            <div class="credit">Developed by Harmain Elahi | Review by Zobia Bint-e-Imran</div>
+        </div>
+        <input type="text" id="searchBox" class="search-box" placeholder="مثلاً: نماز، صبر، والدین...">
+        <button class="search-btn" onclick="searchHadees()">تلاش کریں</button>
+        <div id="hadeesList">
+            <div class="hadees" data-text="اعمال کا دارومدار نیتوں پر ہے۔ صحیح بخاری حدیث نمبر 1">
+                <div class="hadees-title">1. نیت کا بیان</div>
+                <div class="arabic">إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ</div>
+                <div class="translation">اعمال کا دارومدار نیتوں پر ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 1 | راوی: حضرت عمر بن خطاب رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="اسلام کی بنیاد 5 چیزوں پر ہے: کلمہ، نماز، روزہ، زکوٰۃ، حج۔ صحیح بخاری حدیث نمبر 8">
+                <div class="hadees-title">2. اسلام کی بنیاد</div>
+                <div class="arabic">بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ</div>
+                <div class="translation">اسلام کی بنیاد 5 چیزوں پر ہے: کلمہ، نماز، روزہ، زکوٰۃ، حج۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 8 | راوی: حضرت عبداللہ بن عمر رضی اللہ عنہما</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="سب سے افضل عمل وقت پر نماز پڑھنا ہے۔ صحیح بخاری حدیث نمبر 527">
+                <div class="hadees-title">3. بہترین عمل</div>
+                <div class="arabic">أَفْضَلُ الأَعْمَالِ الصَّلاَةُ لِوَقْتِهَا</div>
+                <div class="translation">سب سے افضل عمل وقت پر نماز پڑھنا ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 527 | راوی: حضرت عبداللہ بن مسعود رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="اللہ کی رضا والد کی رضا میں ہے۔ سنن ترمذی حدیث نمبر 1899">
+                <div class="hadees-title">4. والدین کا حق</div>
+                <div class="arabic">رِضَا اللَّهِ فِي رِضَا الْوَالِدِ</div>
+                <div class="translation">اللہ کی رضا والد کی رضا میں ہے۔</div>
+                <div class="hadees-info">حوالہ: سنن ترمذی، حدیث نمبر 1899 | راوی: حضرت عبداللہ بن عمرو رضی اللہ عنہما</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="جبریل مجھے پڑوسی کے بارے میں وصیت کرتے رہے۔ صحیح بخاری حدیث نمبر 6014">
+                <div class="hadees-title">5. پڑوسی کا حق</div>
+                <div class="arabic">مَا زَالَ جِبْرِيلُ يُوصِينِي بِالْجَارِ</div>
+                <div class="translation">جبریل مجھے پڑوسی کے بارے میں وصیت کرتے رہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6014 | راوی: حضرت عائشہ رضی اللہ عنہا</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>            <div class="hadees" data-text="سچ کو لازم پکڑو، سچ نیکی کی طرف لے جاتا ہے۔ صحیح بخاری حدیث نمبر 6094">
+                <div class="hadees-title">6. سچ بولنا</div>
+                <div class="arabic">عَلَيْكُمْ بِالصِّدْقِ</div>
+                <div class="translation">سچ کو لازم پکڑو، سچ نیکی کی طرف لے جاتا ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6094 | راوی: حضرت عبداللہ بن مسعود رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="غصہ مت کرو۔ صحیح بخاری حدیث نمبر 6116">
+                <div class="hadees-title">7. غصہ نہ کرنا</div>
+                <div class="arabic">لاَ تَغْضَبْ</div>
+                <div class="translation">غصہ مت کرو۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6116 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="آپس میں سلام کو عام کرو۔ صحیح مسلم حدیث نمبر 54">
+                <div class="hadees-title">8. سلام پھیلانا</div>
+                <div class="arabic">أَفْشُوا السَّلاَمَ بَيْنَكُمْ</div>
+                <div class="translation">آپس میں سلام کو عام کرو۔</div>
+                <div class="hadees-info">حوالہ: صحیح مسلم، حدیث نمبر 54 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="میں اور یتیم کی کفالت کرنے والا جنت میں ساتھ ہوں گے۔ صحیح بخاری حدیث نمبر 6005">
+                <div class="hadees-title">9. یتیم کی کفالت</div>
+                <div class="arabic">أَنَا وَكَافِلُ الْيَتِيمِ فِي الْجَنَّةِ</div>
+                <div class="translation">میں اور یتیم کی کفالت کرنے والا جنت میں ساتھ ہوں گے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6005 | راوی: حضرت سہل بن سعد رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="اپنے بھائی کے سامنے مسکرانا صدقہ ہے۔ سنن ترمذی حدیث نمبر 1956">
+                <div class="hadees-title">10. مسکراہٹ صدقہ</div>
+                <div class="arabic">تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ لَكَ صَدَقَةٌ</div>
+                <div class="translation">اپنے بھائی کے سامنے مسکرانا صدقہ ہے۔</div>
+                <div class="hadees-info">حوالہ: سنن ترمذی، حدیث نمبر 1956 | راوی: حضرت ابو ذر رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="علم حاصل کرنا ہر مسلمان پر فرض ہے۔ سنن ابن ماجہ حدیث نمبر 224">
+                <div class="hadees-title">11. علم حاصل کرنا</div>
+                <div class="arabic">طَلَبُ الْعِلْمِ فَرِيضَةٌ</div>
+                <div class="translation">علم حاصل کرنا ہر مسلمان پر فرض ہے۔</div>
+                <div class="hadees-info">حوالہ: سنن ابن ماجہ، حدیث نمبر 224 | راوی: حضرت انس رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="دنیا میں ایسے رہو جیسے مسافر ہو۔ صحیح بخاری حدیث نمبر 6416">
+                <div class="hadees-title">12. دنیا کی حقیقت</div>
+                <div class="arabic">كُنْ فِي الدُّنْيَا كَأَنَّكَ غَرِيبٌ</div>
+                <div class="translation">دنیا میں ایسے رہو جیسے مسافر ہو۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6416 | راوی: حضرت عبداللہ بن عمر رضی اللہ عنہما</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="حلال واضح ہے اور حرام واضح ہے۔ صحیح بخاری حدیث نمبر 52">
+                <div class="hadees-title">13. حلال واضح ہے</div>
+                <div class="arabic">الْحَلاَلُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ</div>
+                <div class="translation">حلال واضح ہے اور حرام واضح ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 52 | راوی: حضرت نعمان بن بشیر رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="حیا ایمان کا حصہ ہے۔ صحیح بخاری حدیث نمبر 24">
+                <div class="hadees-title">14. شرم و حیا</div>
+                <div class="arabic">الْحَيَاءُ مِنَ الإِيمَانِ</div>
+                <div class="translation">حیا ایمان کا حصہ ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 24 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="تم میں بہترین وہ ہے جو قرآن سیکھے اور سکھائے۔ صحیح بخاری حدیث نمبر 5027">
+                <div class="hadees-title">15. بہترین لوگ</div>
+                <div class="arabic">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
+                <div class="translation">تم میں بہترین وہ ہے جو قرآن سیکھے اور سکھائے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 5027 | راوی: حضرت عثمان رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="طاقتور مومن کمزور مومن سے بہتر ہے۔ صحیح مسلم حدیث نمبر 2664">
+                <div class="hadees-title">16. مومن مضبوط</div>
+                <div class="arabic">الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ</div>
+                <div class="translation">طاقتور مومن کمزور مومن سے بہتر ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح مسلم، حدیث نمبر 2664 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="راستے سے تکلیف دہ چیز ہٹانا صدقہ ہے۔ صحیح بخاری حدیث نمبر 2989">
+                <div class="hadees-title">17. راستے سے تکلیف ہٹانا</div>
+                <div class="arabic">إِمَاطَةُ الأَذَى عَنِ الطَّرِيقِ صَدَقَةٌ</div>
+                <div class="translation">راستے سے تکلیف دہ چیز ہٹانا صدقہ ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 2989 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="اللہ کا ذکر کرنے والا زندہ کی مثال ہے، نہ کرنے والا مردہ کی۔ صحیح بخاری حدیث نمبر 6407">
+                <div class="hadees-title">18. اللہ کا ذکر</div>
+                <div class="arabic">مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ</div>
+                <div class="translation">اللہ کا ذکر کرنے والا زندہ کی مثال ہے، نہ کرنے والا مردہ کی۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6407 | راوی: حضرت ابو موسیٰ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="ہر انسان خطا کار ہے، بہترین خطاکار توبہ کرنے والے ہیں۔ سنن ترمذی حدیث نمبر 2499">
+                <div class="hadees-title">19. توبہ</div>
+                <div class="arabic">كُلُّ ابْنِ آدَمَ خَطَّاءٌ</div>
+                <div class="translation">ہر انسان خطا کار ہے، بہترین خطاکار توبہ کرنے والے ہیں۔</div>
+                <div class="hadees-info">حوالہ: سنن ترمذی، حدیث نمبر 2499 | راوی: حضرت انس رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="اللہ کو 4 کلمات سب سے پیارے ہیں: سبحان اللہ، الحمدللہ، لا الہ الا اللہ، اللہ اکبر۔ صحیح مسلم حدیث نمبر 2137">
+                <div class="hadees-title">20. بہترین کلام</div>
+                <div class="arabic">أَحَبُّ الْكَلاَمِ إِلَى اللَّهِ أَرْبَعٌ</div>
+                <div class="translation">اللہ کو 4 کلمات سب سے پیارے ہیں: سبحان اللہ، الحمدللہ، لا الہ الا اللہ، اللہ اکبر۔</div>
+                <div class="hadees-info">حوالہ: صحیح مسلم، حدیث نمبر 2137 | راوی: حضرت سمرہ بن جندب رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="مسلمان کو جو تکلیف پہنچتی ہے اللہ اس سے گناہ مٹا دیتا ہے۔ صحیح بخاری حدیث نمبر 5641">
+                <div class="hadees-title">21. تکلیف پر اجر</div>
+                <div class="arabic">مَا يُصِيبُ الْمُسْلِمَ مِنْ نَصَبٍ</div>
+                <div class="translation">مسلمان کو جو تکلیف پہنچتی ہے اللہ اس سے گناہ مٹا دیتا ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 5641 | راوی: حضرت ابو سعید و ابو ہریرہ رضی اللہ عنہما</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="صفائی نصف ایمان ہے۔ صحیح مسلم حدیث نمبر 223">
+                <div class="hadees-title">22. صفائی نصف ایمان</div>
+                <div class="arabic">الطُّهُورُ شَطْرُ الإِيمَانِ</div>
+                <div class="translation">صفائی نصف ایمان ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح مسلم، حدیث نمبر 223 | راوی: حضرت ابو مالک اشعری رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="جو اللہ اور آخرت پر ایمان رکھتا ہے وہ ہمسایہ کو تکلیف نہ دے۔ صحیح بخاری حدیث نمبر 6018">
+                <div class="hadees-title">23. ہمسایہ کا خیال</div>
+                <div class="arabic">مَنْ كَانَ يُؤْمِنُ بِاللَّهِ</div>
+                <div class="translation">جو اللہ اور آخرت پر ایمان رکھتا ہے وہ ہمسایہ کو تکلیف نہ دے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6018 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="ہر جاندار پر رحم کرنے میں اجر ہے۔ صحیح بخاری حدیث نمبر 2363">
+                <div class="hadees-title">24. جانوروں پر رحم</div>
+                <div class="arabic">فِي كُلِّ كَبِدٍ رَطْبَةٍ أَجْرٌ</div>
+                <div class="translation">ہر جاندار پر رحم کرنے میں اجر ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 2363 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="امانت اسے واپس کرو جس نے تم پر اعتماد کیا۔ سنن ابو داؤد حدیث نمبر 3534">
+                <div class="hadees-title">25. امانت داری</div>
+                <div class="arabic">أَدِّ الأَمَانَةَ إِلَى مَنِ ائْتَمَنَكَ</div>
+                <div class="translation">امانت اسے واپس کرو جس نے تم پر اعتماد کیا۔</div>
+                <div class="hadees-info">حوالہ: سنن ابو داؤد، حدیث نمبر 3534 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="اپنے بھائی کا ذکر اس طرح کرنا جو اسے ناپسند ہو۔ صحیح مسلم حدیث نمبر 2589">
+                <div class="hadees-title">26. غیبت</div>
+                <div class="arabic">ذِكْرُكَ أَخَاكَ بِمَا يَكْرَهُ</div>
+                <div class="translation">اپنے بھائی کا ذکر اس طرح کرنا جو اسے ناپسند ہو۔</div>
+                <div class="hadees-info">حوالہ: صحیح مسلم، حدیث نمبر 2589 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="کسی کو صبر سے بہتر عطا نہیں دی گئی۔ صحیح بخاری حدیث نمبر 1469">
+                <div class="hadees-title">27. صبر</div>
+                <div class="arabic">مَا أُعْطِيَ أَحَدٌ عَطَاءً خَيْرًا مِنَ الصَّبْرِ</div>
+                <div class="translation">کسی کو صبر سے بہتر عطا نہیں دی گئی۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 1469 | راوی: حضرت ابو سعید خدری رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="مالدار کا قرض ادا کرنے میں ٹال مٹول ظلم ہے۔ صحیح بخاری حدیث نمبر 2287">
+                <div class="hadees-title">28. قرض</div>
+                <div class="arabic">مَطْلُ الْغَنِيِّ ظُلْمٌ</div>
+                <div class="translation">مالدار کا قرض ادا کرنے میں ٹال مٹول ظلم ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 2287 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="راستوں پہ بیٹھنے سے بچو۔ صحیح بخاری حدیث نمبر 2465">
+                <div class="hadees-title">29. راستے کا حق</div>
+                <div class="arabic">إِيَّاكُمْ وَالْجُلُوسَ عَلَى الطُّرُقَاتِ</div>
+                <div class="translation">راستوں پہ بیٹھنے سے بچو۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 2465 | راوی: حضرت ابو سعید خدری رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="اسلام یہ ہے کہ تو گواہی دے کہ اللہ کے سوا کوئی معبود نہیں۔ صحیح مسلم حدیث نمبر 8">
+                <div class="hadees-title">30. حدیث جبریل</div>
+                <div class="arabic">الإِسْلاَمُ أَنْ تَشْهَدَ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ</div>
+                <div class="translation">اسلام یہ ہے کہ تو گواہی دے کہ اللہ کے سوا کوئی معبود نہیں۔</div>
+                <div class="hadees-info">حوالہ: صحیح مسلم، حدیث نمبر 8 | راوی: حضرت عمر رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="کوئی مومن نہیں ہو سکتا جب تک اپنے بھائی کے لیے وہی پسند نہ کرے جو اپنے لیے پسند کرتا ہے۔ صحیح بخاری حدیث نمبر 13">
+                <div class="hadees-title">31. محبت کا معیار</div>
+                <div class="arabic">لاَ يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ</div>
+                <div class="translation">کوئی مومن نہیں ہو سکتا جب تک اپنے بھائی کے لیے وہی پسند نہ کرے جو اپنے لیے پسند کرتا ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 13 | راوی: حضرت انس رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="زمین والوں پر رحم کرو، آسمان والا تم پر رحم کرے گا۔ سنن ترمذی حدیث نمبر 1924">
+                <div class="hadees-title">32. زمین پر رحم</div>
+                <div class="arabic">ارْحَمُوا مَنْ فِي الأَرْضِ</div>
+                <div class="translation">زمین والوں پر رحم کرو، آسمان والا تم پر رحم کرے گا۔</div>
+                <div class="hadees-info">حوالہ: سنن ترمذی، حدیث نمبر 1924 | راوی: حضرت عبداللہ بن عمرو رضی اللہ عنہما</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="خبردار! جھوٹی بات اور جھوٹی گواہی۔ صحیح بخاری حدیث نمبر 2654">
+                <div class="hadees-title">33. جھوٹی گواہی</div>
+                <div class="arabic">أَلاَ وَقَوْلُ الزُّورِ</div>
+                <div class="translation">خبردار! جھوٹی بات اور جھوٹی گواہی۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 2654 | راوی: حضرت ابو بکرہ رضی اللہ عنہ</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="اللہ نرم ہے اور ہر کام میں نرمی کو پسند کرتا ہے۔ صحیح بخاری حدیث نمبر 6024">
+                <div class="hadees-title">34. نرمی</div>
+                <div class="arabic">إِنَّ اللَّهَ رَفِيقٌ يُحِبُّ الرِّفْقَ</div>
+                <div class="translation">اللہ نرم ہے اور ہر کام میں نرمی کو پسند کرتا ہے۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6024 | راوی: حضرت عائشہ رضی اللہ عنہا</div>
+                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
+            </div>
+            <div class="hadees" data-text="مسلمان کا مسلمان پر 5 حق ہیں: سلام، بیمار پرسی، جنازہ، دعوت، چھینک کا جواب۔ صحیح بخاری حدیث نمبر 1240">
+                <div class="hadees-title">35. بیمار پرسی</div>
+                <div class="arabic">حَقُّ الْمُسْلِمِ عَلَى الْمُ
