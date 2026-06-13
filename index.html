@@ -6,25 +6,25 @@
     <title>صحیح بخاری - سرچ انجن</title>
     <style>
         body { font-family: 'Noto Nastaliq Urdu', Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
-      .splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0d4b2a, #1a5c2e); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; text-align: center; padding: 20px; box-sizing: border-box; }
-      .splash h1 { font-size: 2.2em; margin-bottom: 15px; }
-      .splash .bismillah { font-size: 1.8em; margin-bottom: 20px; color: #d4af37; }
-      .splash .durood { font-size: 1.1em; margin-bottom: 25px; line-height: 1.8; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; }
-      .splash button { background: #d4af37; color: #0d4b2a; border: none; padding: 15px 40px; font-size: 1.3em; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
-      .main { display: none; padding: 20px; max-width: 900px; margin: auto; }
-      .header { text-align: center; background: #0d4b2a; color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; position: relative; }
-      .header .bismillah-top { font-size: 1.5em; color: #d4af37; margin-bottom: 10px; }
-      .header .ilham { position: absolute; left: 15px; top: 15px; font-size: 0.8em; color: #d4af37; opacity: 0.8; }
-      .header .credit { font-size: 0.9em; color: #d4af37; margin-top: 10px; }
-      .search-box { width: 100%; padding: 15px; font-size: 1.1em; border: 2px solid #0d4b2a; border-radius: 8px; margin-bottom: 20px; box-sizing: border-box; }
-      .search-btn { background: #0d4b2a; color: white; border: none; padding: 12px 25px; font-size: 1.1em; border-radius: 8px; cursor: pointer; margin-bottom: 20px; }
-      .hadees { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; border-right: 5px solid #d4af37; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; }
-      .hadees-title { font-weight: bold; color: #0d4b2a; font-size: 1.3em; margin-bottom: 10px; }
-      .arabic { font-size: 1.4em; color: #333; margin: 10px 0; line-height: 2; }
-      .translation { margin: 10px 0; }
-      .hadees-info { color: #666; font-size: 0.9em; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px; }
-      .speak-btn { background: #d4af37; color: #0d4b2a; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em; margin-top: 10px; }
-      .hidden { display: none; }
+    .splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0d4b2a, #1a5c2e); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; text-align: center; padding: 20px; box-sizing: border-box; }
+    .splash h1 { font-size: 2.2em; margin-bottom: 15px; }
+    .splash .bismillah { font-size: 1.8em; margin-bottom: 20px; color: #d4af37; }
+    .splash .durood { font-size: 1.1em; margin-bottom: 25px; line-height: 1.8; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; }
+    .splash button { background: #d4af37; color: #0d4b2a; border: none; padding: 15px 40px; font-size: 1.3em; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+    .main { display: none; padding: 20px; max-width: 900px; margin: auto; }
+    .header { text-align: center; background: #0d4b2a; color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; position: relative; }
+    .header .bismillah-top { font-size: 1.5em; color: #d4af37; margin-bottom: 10px; }
+    .header .ilham { position: absolute; left: 15px; top: 15px; font-size: 0.8em; color: #d4af37; opacity: 0.8; }
+    .header .credit { font-size: 0.9em; color: #d4af37; margin-top: 10px; }
+    .search-box { width: 100%; padding: 15px; font-size: 1.1em; border: 2px solid #0d4b2a; border-radius: 8px; margin-bottom: 20px; box-sizing: border-box; }
+    .search-btn { background: #0d4b2a; color: white; border: none; padding: 12px 25px; font-size: 1.1em; border-radius: 8px; cursor: pointer; margin-bottom: 20px; }
+    .hadees { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; border-right: 5px solid #d4af37; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; }
+    .hadees-title { font-weight: bold; color: #0d4b2a; font-size: 1.3em; margin-bottom: 10px; }
+    .arabic { font-size: 1.4em; color: #333; margin: 10px 0; line-height: 2; }
+    .translation { margin: 10px 0; }
+    .hadees-info { color: #666; font-size: 0.9em; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px; }
+    .speak-btn { background: #d4af37; color: #0d4b2a; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em; margin-top: 10px; }
+    .hidden { display: none; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -84,7 +84,8 @@
                 <div class="translation">جبریل مجھے پڑوسی کے بارے میں وصیت کرتے رہے۔</div>
                 <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 6014 | راوی: حضرت عائشہ رضی اللہ عنہا</div>
                 <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
-            </div>            <div class="hadees" data-text="سچ کو لازم پکڑو، سچ نیکی کی طرف لے جاتا ہے۔ صحیح بخاری حدیث نمبر 6094">
+            </div>
+            <div class="hadees" data-text="سچ کو لازم پکڑو، سچ نیکی کی طرف لے جاتا ہے۔ صحیح بخاری حدیث نمبر 6094">
                 <div class="hadees-title">6. سچ بولنا</div>
                 <div class="arabic">عَلَيْكُمْ بِالصِّدْقِ</div>
                 <div class="translation">سچ کو لازم پکڑو، سچ نیکی کی طرف لے جاتا ہے۔</div>
@@ -223,8 +224,7 @@
                 <div class="translation">امانت اسے واپس کرو جس نے تم پر اعتماد کیا۔</div>
                 <div class="hadees-info">حوالہ: سنن ابو داؤد، حدیث نمبر 3534 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
                 <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
-            </div>
-            <div class="hadees" data-text="اپنے بھائی کا ذکر اس طرح کرنا جو اسے ناپسند ہو۔ صحیح مسلم حدیث نمبر 2589">
+    </div>            <div class="hadees" data-text="اپنے بھائی کا ذکر اس طرح کرنا جو اسے ناپسند ہو۔ صحیح مسلم حدیث نمبر 2589">
                 <div class="hadees-title">26. غیبت</div>
                 <div class="arabic">ذِكْرُكَ أَخَاكَ بِمَا يَكْرَهُ</div>
                 <div class="translation">اپنے بھائی کا ذکر اس طرح کرنا جو اسے ناپسند ہو۔</div>
@@ -289,23 +289,6 @@
             </div>
             <div class="hadees" data-text="مسلمان کا مسلمان پر 5 حق ہیں: سلام، بیمار پرسی، جنازہ، دعوت، چھینک کا جواب۔ صحیح بخاری حدیث نمبر 1240">
                 <div class="hadees-title">35. بیمار پرسی</div>
-                <div class="arabic">حَقُّ الْمُسْلِمِ عَلَى الْمُ            <div class="hadees" data-text="صلہ رحمی کرنے والا وہ نہیں جو بدلے میں کرے، بلکہ وہ ہے کہ جب رشتہ توڑا جائے تو جوڑے۔ صحیح بخاری حدیث نمبر 5991">
-                <div class="hadees-title">47. رشتے جوڑنا</div>
-                <div class="arabic">لَيْسَ الْوَاصِلُ بِالْمُكَافِئِ</div>
-                <div class="translation">صلہ رحمی کرنے والا وہ نہیں جو بدلے میں کرے، بلکہ وہ ہے کہ جب رشتہ توڑا جائے تو جوڑے۔</div>
-                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 5991 | راوی: حضرت عبداللہ بن عمرو رضی اللہ عنہما</div>
-                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
-            </div>
-            <div class="hadees" data-text="دعا ہی عبادت ہے۔ سنن ترمذی حدیث نمبر 2969">
-                <div class="hadees-title">48. دعا عبادت ہے</div>
-                <div class="arabic">الدُّعَاءُ هُوَ الْعِبَادَةُ</div>
-                <div class="translation">دعا ہی عبادت ہے۔</div>
-                <div class="hadees-info">حوالہ: سنن ترمذی، حدیث نمبر 2969 | راوی: حضرت نعمان بن بشیر رضی اللہ عنہ</div>
-                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</button>
-            </div>
-            <div class="hadees" data-text="بیشک دین آسان ہے۔ صحیح بخاری حدیث نمبر 39">
-                <div class="hadees-title">49. دین آسان ہے</div>
-                <div class="arabic">إِنَّ الدِّينَ يُسْرٌ</div>
-                <div class="translation">بیشک دین آسان ہے۔</div>
-                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 39 | راوی: حضرت ابو ہریرہ رضی اللہ عنہ</div>
-                <button class="speak-btn" onclick="speakHadees(this)">🔊 سنیں</
+                <div class="arabic">حَقُّ الْمُسْلِمِ عَلَى الْمُسْلِمِ خَمْسٌ</div>
+                <div class="translation">مسلمان کا مسلمان پر 5 حق ہیں: سلام، بیمار پرسی، جنازہ، دعوت، چھینک کا جواب۔</div>
+                <div class="hadees-info">حوالہ: صحیح بخاری، حدیث نمبر 1240 | راوی: حضرت ابو ہریرہ رضی اللہ عن
